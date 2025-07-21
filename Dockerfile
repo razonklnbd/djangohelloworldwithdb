@@ -13,6 +13,9 @@ RUN pip install -r requirements.txt
 RUN django-admin startproject djangohelloworldwithdb .
 #WORKDIR /code
 
+RUN echo "import pymysql" > /code/djangohelloworldwithdb/__init__.py
+RUN echo "pymysql.install_as_MySQLdb()" > /code/djangohelloworldwithdb/__init__.py
+
 RUN sed -i "/^ALLOWED_HOSTS = \[\]/a ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'djangohelloworldwithdb.shahadathossain.com']" /code/djangohelloworldwithdb/settings.py
 #RUN echo "ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'djangohelloworldwithdb.shahadathossain.com']" >> /djangohelloworldwithdb/settings.py
 
@@ -22,7 +25,7 @@ RUN echo "    'USER': 'your_database_user'," >> /code/djangohelloworldwithdb/set
 RUN echo "    'PASSWORD': 'your_database_password'," >> /code/djangohelloworldwithdb/settings.py
 RUN echo "    'HOST': 'localhost'," >> /code/djangohelloworldwithdb/settings.py
 RUN echo "    'PORT': '3306'," >> /code/djangohelloworldwithdb/settings.py
-RUN echo "    'OPTIONS': {'charset': 'utf8mb4', 'use_pure': True}," >> /code/djangohelloworldwithdb/settings.py
+#RUN echo "    'OPTIONS': {'charset': 'utf8mb4', 'use_pure': True}," >> /code/djangohelloworldwithdb/settings.py
 RUN echo "}}" >> /code/djangohelloworldwithdb/settings.py
 
 RUN python manage.py startapp dbtestapp
