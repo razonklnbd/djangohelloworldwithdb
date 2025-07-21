@@ -14,7 +14,7 @@ RUN django-admin startproject djangohelloworldwithdb .
 #WORKDIR /code
 
 RUN echo "import pymysql" > /code/djangohelloworldwithdb/__init__.py
-RUN echo "pymysql.install_as_MySQLdb()" > /code/djangohelloworldwithdb/__init__.py
+RUN echo "pymysql.install_as_MySQLdb()" >> /code/djangohelloworldwithdb/__init__.py
 
 RUN sed -i "/^ALLOWED_HOSTS = \[\]/a ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'djangohelloworldwithdb.shahadathossain.com']" /code/djangohelloworldwithdb/settings.py
 #RUN echo "ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'djangohelloworldwithdb.shahadathossain.com']" >> /djangohelloworldwithdb/settings.py
