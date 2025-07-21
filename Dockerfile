@@ -8,6 +8,7 @@ RUN pip install -U setuptools
 RUN echo "Django==5.2.4" >> requirements.txt
 RUN echo "uWSGI==2.0.30" >> requirements.txt
 RUN echo "PyMySQL==1.1.0" >> requirements.txt
+RUN echo "cryptography>=3.0" >> requirements.txt
 RUN pip install -r requirements.txt
 
 RUN django-admin startproject djangohelloworldwithdb .
@@ -47,7 +48,7 @@ RUN echo "    return HttpResponse('Hello World. Database '+db_status+('' if db_e
 # Create urls.py for dbtestapp
 RUN echo "from django.urls import path" > /code/dbtestapp/urls.py
 RUN echo "from . import views" >> /code/dbtestapp/urls.py
-RUN echo "urlpatterns = [path('', home_page_view_hello_world, name='helloworld'),]" >> /code/dbtestapp/urls.py
+RUN echo "urlpatterns = [path('', views.home_page_view_hello_world, name='helloworld'),]" >> /code/dbtestapp/urls.py
 
 # Safely append to the project's urls.py
 RUN sed -i "/from django.urls import path/a from django.urls import include" /code/djangohelloworldwithdb/urls.py
